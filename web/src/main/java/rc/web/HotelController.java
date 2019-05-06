@@ -38,6 +38,7 @@ public class HotelController {
     public List<Hotel> getByPricePerNight(@PathVariable("maxPrice") int maxPrice){
         return hotelService.findByPricePerNightLessThan(maxPrice);
 
+
     }
 
 
