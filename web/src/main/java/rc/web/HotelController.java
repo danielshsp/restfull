@@ -32,9 +32,9 @@ public class HotelController {
     }
     
 
-    @GetMapping("/user/query/{key}/{name}")
-    public List<User> findByDetails(@PathVariable String key ,@PathVariable String name){
-       return userService.findByDetails(key, name);
+    @GetMapping("/user/query/{key}/{param}")
+    public List<User> findByDetails(@PathVariable final String key ,@PathVariable final String param){
+       return userService.findByDetails(key, param);
       
     }
     
