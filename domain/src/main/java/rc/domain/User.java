@@ -16,7 +16,7 @@ public class User {
     private Object details;
    // private Map<String,Object> details = new HashMap();
 
-    public User() { 
+    public User() {
     }
 
 
@@ -33,7 +33,7 @@ public class User {
     }
 
     public void setDetails(Object details) {
-        this.details = details;
+        this.details = details ;
     }
 
    

@@ -1,19 +1,13 @@
 package rc.web;
 
-import com.fasterxml.jackson.core.JsonParser;
 import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
-import com.mongodb.util.JSON;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import rc.domain.Hotel;
 import rc.domain.User;
 import rc.service.HotelService;
 import java.util.List;
-import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
+import org.json.JSONException;
 import rc.service.UserService;
 
 @RestController
@@ -24,6 +18,7 @@ public class HotelController {
     HotelService hotelService;
     @Autowired
     UserService userService;
+    
     
     
     @GetMapping("/user/name/{name}")
@@ -42,10 +37,25 @@ public class HotelController {
     public List<User> findAllUser(){
        return userService.findAll();
     }
+    @GetMapping("/users")
+    public void saveUsers() throws JSONException{
+        User user = new User();
+        BasicDBObject details = new BasicDBObject();
+        details.put("dynamicField1", "dynamicValue1");
+        details.put("dynamicField2", "dynamicValue2");
+        user.setDetails(details);
+        userService.save(user);
+    }
+    @PostMapping("/users")
+    public void saveUserDB(@RequestBody BasicDBObject details){
+        User user = new User();
+        user.setDetails(details);
+        userService.save(user);
+    }
 
     @PostMapping("/user")
     public void saveUser(@RequestBody User user){
-        //user.setDetails((JSONObject) JSON.parse(userObj));
+       
         userService.save(user);
     }
 
